@@ -3,6 +3,10 @@
 [![npm Downloads](https://img.shields.io/npm/dm/react-autowhatever.svg?style=flat-square)](https://npmjs.org/package/react-autowhatever)
 [![npm Version](https://img.shields.io/npm/v/react-autowhatever.svg?style=flat-square)](https://npmjs.org/package/react-autowhatever)
 
+# Fork changes
+
+Added Layout prop enabling to change Autowhatever layout by default
+
 # React Autowhatever
 
 Accessible rendering layer for Autosuggest and Autocomplete components.

@@ -25,6 +25,16 @@ const defaultTheme = {
   sectionContainerFirst: 'react-autowhatever__section-container--first',
   sectionTitle: 'react-autowhatever__section-title'
 };
+const DefaultLayout = ({
+  containerProps,
+  inputComponent,
+  itemsContainer
+}) => (
+  <div {...containerProps}>
+    {inputComponent}
+    {itemsContainer}
+  </div>
+);
 
 export default class Autowhatever extends Component {
   static propTypes = {
@@ -47,7 +57,8 @@ export default class Autowhatever extends Component {
     theme: PropTypes.oneOfType([               // Styles. See: https://github.com/markdalgleish/react-themeable
       PropTypes.object,
       PropTypes.array
-    ])
+    ]),
+    Layout: PropTypes.func
   };
 
   static defaultProps = {
@@ -69,7 +80,8 @@ export default class Autowhatever extends Component {
     itemProps: emptyObject,
     highlightedSectionIndex: null,
     highlightedItemIndex: null,
-    theme: defaultTheme
+    theme: defaultTheme,
+    Layout: DefaultLayout,
   };
 
   constructor(props) {
@@ -298,7 +310,7 @@ export default class Autowhatever extends Component {
     const { theme } = this;
     const {
       id, multiSection, renderInputComponent, renderItemsContainer,
-      highlightedSectionIndex, highlightedItemIndex
+      highlightedSectionIndex, highlightedItemIndex, Layout
     } = this.props;
     const { isInputFocused } = this.state;
     const renderedItems = multiSection ? this.renderSections() : this.renderItems();
@@ -345,10 +357,11 @@ export default class Autowhatever extends Component {
     });
 
     return (
-      <div {...containerProps}>
-        {inputComponent}
-        {itemsContainer}
-      </div>
+      <Layout
+        containerProps={containerProps}
+        inputComponent={inputComponent}
+        itemsContainer={itemsContainer}
+      />
     );
   }
 }
